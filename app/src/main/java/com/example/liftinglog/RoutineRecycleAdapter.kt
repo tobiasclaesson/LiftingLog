@@ -1,6 +1,7 @@
 package com.example.liftinglog
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,17 @@ class RoutineRecycleAdapter(private val context: Context, private val routines: 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textRoutineName = itemView.findViewById<TextView>(R.id.routineNameText)
+
+
+
+
+        init {
+            itemView.setOnClickListener{ view ->
+                Log.d("Testing", "Working")
+            }
+
+
+        }
 
     }
 
@@ -30,5 +42,7 @@ class RoutineRecycleAdapter(private val context: Context, private val routines: 
         val routine = routines[position]
 
         holder.textRoutineName.text = routine.name
+
+
     }
 }

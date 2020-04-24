@@ -8,6 +8,7 @@
         android:id="@+id/routinesCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="#607D8B"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
@@ -24,10 +25,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="35dp"
-                android:text="TextView"
                 android:fontFamily="Roboto"
-                android:textSize="48px"
                 android:letterSpacing="0"
+                android:text="TextView"
+                android:textColor="#ffffff"
+                android:textSize="48px"
+
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
