@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class AddRoutineRecycleAdapter(private val context: Context, private val exercises: List<Exercise>) : RecyclerView.Adapter<AddRoutineRecycleAdapter.ViewHolder>() {
@@ -14,6 +16,10 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val exerciseHeader = itemView.findViewById<TextView>(R.id.addRoutineNameText)
+        val setsRecyclerView = itemView.findViewById<RecyclerView>(R.id.setsRecyclerView)
+
+        val addSetButton = itemView.findViewById<Button>(R.id.addSetButton)
+
 
     }
 
@@ -30,6 +36,20 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercise = exercises[position]
 
+
+
+        holder.setsRecyclerView.layoutManager = LinearLayoutManager(holder.setsRecyclerView.context)
+        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, exercise)
+
+        holder.addSetButton.setOnClickListener{ view ->
+            exercise.sets++
+            holder.setsRecyclerView.adapter?.notifyDataSetChanged()
+        }
+
+
+
         holder.exerciseHeader.text = exercise.name.toString()
+
+
     }
 }

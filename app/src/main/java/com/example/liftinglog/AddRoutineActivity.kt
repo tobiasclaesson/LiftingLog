@@ -19,11 +19,14 @@ class AddRoutineActivity : AppCompatActivity() {
         val addExerciseButton = findViewById<Button>(R.id.addExerciseButton)
         val routineNameText = findViewById<EditText>(R.id.routineNameText)
         val addRoutineRecyclerView = findViewById<RecyclerView>(R.id.addRoutineRecyclerView)
-        val adapter = AddRoutineRecycleAdapter(this, exerciseList)
+        val addRoutineAdapter = AddRoutineRecycleAdapter(this, exerciseList)
+        val setsRecyclerView = findViewById<RecyclerView>(R.id.setsRecyclerView)
+
 
         addRoutineRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        addRoutineRecyclerView.adapter = adapter
+        addRoutineRecyclerView.adapter = addRoutineAdapter
+
 
         routineNameText.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus){
