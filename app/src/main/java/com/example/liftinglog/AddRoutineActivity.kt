@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class AddRoutineActivity : AppCompatActivity() {
 
-    var exerciseList = mutableListOf<Exercise>(Exercise("Benchpress", "hej", 1, 0, 0.0))
+    var exerciseList = mutableListOf<Exercise>(Exercise("Bench press", "notinging", 1, 0, mutableListOf(0), mutableListOf(0.0)))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class AddRoutineActivity : AppCompatActivity() {
             }
         }
         addExerciseButton.setOnClickListener{ view ->
-            exerciseList.add(Exercise("Dubbelhakspress", "hej", 1, 0, 0.0))
+            exerciseList.add(Exercise("Dubbelhakspress", "hej", 1, 0, mutableListOf(0), mutableListOf(0.0)))
             addRoutineRecyclerView.adapter?.notifyDataSetChanged()
         }
 

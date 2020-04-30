@@ -1,7 +1,6 @@
 package com.example.liftinglog
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +41,7 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
         holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, exercise)
 
         holder.addSetButton.setOnClickListener{ view ->
-            exercise.sets++
+            exercise.addSet()
             holder.setsRecyclerView.adapter?.notifyDataSetChanged()
         }
 
