@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/repNumberText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,13 +32,19 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
             android:text="10"
+            android:elevation="10dp"
+            android:inputType="numberSigned"
+            android:selectAllOnFocus="true"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:background="#455A64"
             android:textAlignment="center"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/setNumberText"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/weightNumberText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +52,12 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
             android:text="20.5"
-
+            android:inputType="numberDecimal"
+            android:elevation="10dp"
+            android:selectAllOnFocus="true"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:background="#455A64"
             android:textAlignment="center"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
