@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="hideKeyboard">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +41,7 @@
                 android:id="@+id/addExerciseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="#607D8B"
@@ -49,10 +51,27 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addRoutineRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/addRoutineRecyclerView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/saveRoutineButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="16dp"
+                android:background="#607D8B"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Save Routine"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addRoutineRecyclerView"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/addRoutineRecyclerView"
