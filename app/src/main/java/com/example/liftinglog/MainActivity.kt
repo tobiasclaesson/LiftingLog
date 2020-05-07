@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DataManager.routines.add(Routine("My Test Routine", listOf<Exercise>()))
-        DataManager.routines.add(Routine("My Second Test Routine", listOf<Exercise>()))
+        DataManager.routines.add(Routine("My Test Routine", mutableListOf<Exercise>()))
+        DataManager.routines.add(Routine("My Second Test Routine", mutableListOf<Exercise>()))
 
         val routinesRecyclerView = findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = findViewById<FloatingActionButton>(R.id.addRoutineFab)
