@@ -57,7 +57,7 @@ class AddRoutineActivity : AppCompatActivity() {
         }
         saveRoutineButton.setOnClickListener{ view ->
             saveRoutine()
-            //finish()
+
         }
 
 
@@ -65,20 +65,20 @@ class AddRoutineActivity : AppCompatActivity() {
 
     fun saveRoutine(){
         val routine = Routine(routineNameText.text.toString(), exerciseList)
-        println("!!! be4 nullcheck")
+
+        println("!!! b4 nullcheck")
         val user = auth.currentUser ?: return
         println("!!! after nullcheck")
+
         db.collection("users").document(user.uid).collection("routines").add(routine)
             .addOnSuccessListener {documentReference ->
-
                 println("!!! DocumentSnapshot added with ID: ${documentReference.id}")
+                finish()
             }
             .addOnFailureListener{
-
-                println("!!! error adding document, $it")
+                println("!!! error adding document: $it")
             }
     }
-
 
     fun loginUser(){
         if (auth.currentUser == null){

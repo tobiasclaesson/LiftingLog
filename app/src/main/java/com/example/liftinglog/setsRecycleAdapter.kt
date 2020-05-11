@@ -41,8 +41,8 @@ class SetsRecycleAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setText.text = (position + 1).toString()
-        holder.repText.setText(exercise.reps[position].toString())
-        holder.weightText.setText(exercise.weight[position].toString())
+        holder.repText.setText(exercise.reps!![position].toString())
+        holder.weightText.setText(exercise.weight!![position].toString())
 
 
         holder.repText.setOnFocusChangeListener { v, hasFocus ->
@@ -55,7 +55,7 @@ class SetsRecycleAdapter(private val context: Context,
                 val data = holder.repText.text
 
                 exercise.updateReps(position, data.toString().toInt())
-                exercise.reps.forEach {
+                exercise.reps!!.forEach {
                     Log.d("!!!", "Rep: $it")
                 }
                 //setsRecycleView.adapter?.notifyDataSetChanged()
@@ -73,7 +73,7 @@ class SetsRecycleAdapter(private val context: Context,
 
                 exercise.updateWeight(position, data.toString().toDouble())
 
-                exercise.weight.forEach {
+                exercise.weight!!.forEach {
                     Log.d("!!!", "Weight: $it")
                 }
                 //setsRecycleView.adapter?.notifyDataSetChanged()

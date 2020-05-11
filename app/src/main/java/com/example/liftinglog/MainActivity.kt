@@ -11,15 +11,31 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
 
+    lateinit var db: FirebaseFirestore
+    lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        db = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+        loginUser()
+
+        loadRoutines()
+
+
 
         DataManager.routines.add(Routine("My Test Routine", mutableListOf<Exercise>()))
         DataManager.routines.add(Routine("My Second Test Routine", mutableListOf<Exercise>()))
@@ -36,13 +52,53 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
     }
 
     override fun onResume() {
         super.onResume()
 
-        routinesRecyclerView.adapter?.notifyDataSetChanged()
+
     }
+
+    fun loadRoutines(){
+        val user = auth.currentUser ?: return
+        val routinesRef = db.collection("users").document(user.uid).collection("routines")
+
+        routinesRef.addSnapshotListener { snapshot , e ->
+            if(snapshot != null){
+                DataManager.routines.clear()
+                for (document in snapshot.documents){
+                    val newRoutine = document.toObject(Routine::class.java)
+                    if (newRoutine != null){
+                        DataManager.routines.add(newRoutine!!)
+                        routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
+                    }
+                }
+            }
+        }
+
+    }
+
+    fun loginUser(){
+        if (auth.currentUser == null){
+            auth.signInWithEmailAndPassword("test@test.com", "password")
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        println("!!! authloggedin")
+
+
+
+                    } else {
+                        println("!!! user not logged in")
+                    }
+                }
+        } else {
+            println("!!! user already logged in")
+        }
+    }
+
     fun hideKeyboard(view: View){
         val view = this.currentFocus
         if (view != null){
