@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class AddRoutineRecycleAdapter(private val context: Context, private val exercises: List<Exercise>) : RecyclerView.Adapter<AddRoutineRecycleAdapter.ViewHolder>() {
+class ActiveRoutineRecycleAdapter(private val context: Context, private val exercises: List<Exercise>?) : RecyclerView.Adapter<ActiveRoutineRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val exerciseHeader = itemView.findViewById<TextView>(R.id.addRoutineNameText)
-        val setsRecyclerView = itemView.findViewById<RecyclerView>(R.id.addRoutineSetsRecyclerView)
-
-        val addSetButton = itemView.findViewById<Button>(R.id.addSetButton)
+        val exerciseHeader = itemView.findViewById<TextView>(R.id.activeRoutineNameText)
+        val setsRecyclerView = itemView.findViewById<RecyclerView>(R.id.activeRoutineSetsRecyclerView)
+        val addSetButton = itemView.findViewById<Button>(R.id.activeRoutineAddSetButton)
+        //val removeButton = itemView.findViewById<ImageButton>(R.id.removeButton)
         var exercisePosition = 0
 
         init {
@@ -25,33 +26,36 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
 
         }
 
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = layoutInflater.inflate(R.layout.add_routine_list_item, parent, false)
+        val itemView = layoutInflater.inflate(R.layout.active_routine_list_item, parent, false)
 
         return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return exercises.size
+
+        return exercises!!.size
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val exercise = exercises[position]
+        val exercise = exercises!![position]
         holder.exercisePosition = position
 
         holder.exerciseHeader.text = exercise.name.toString()
 
+
         holder.setsRecyclerView.layoutManager = LinearLayoutManager(holder.setsRecyclerView.context)
         holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, exercises!![holder.exercisePosition])
 
+
+
         holder.addSetButton.setOnClickListener{ view ->
-            println("!!! b4 addset sets: ${exercises!![position].set}")
-            exercises!![position].addSet()
-            println("!!! after addset sets: ${exercises!![position].set}")
+            exercises!![holder.exercisePosition].addSet()
             holder.setsRecyclerView.adapter?.notifyDataSetChanged()
         }
-
     }
 }

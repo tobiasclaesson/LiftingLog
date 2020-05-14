@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         loadRoutines()
 
-
-
-        DataManager.routines.add(Routine("My Test Routine", mutableListOf<Exercise>()))
-        DataManager.routines.add(Routine("My Second Test Routine", mutableListOf<Exercise>()))
-
         val routinesRecyclerView = findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = findViewById<FloatingActionButton>(R.id.addRoutineFab)
 
@@ -55,6 +50,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
 
     override fun onResume() {
         super.onResume()

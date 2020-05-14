@@ -2,31 +2,38 @@ package com.example.liftinglog
 
 import android.content.Context
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class SetsRecycleAdapter(private val context: Context,
                          val exercise: Exercise) : RecyclerView.Adapter<SetsRecycleAdapter.ViewHolder>() {
 
-
     private val layoutInflater = LayoutInflater.from(context)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val setsRecycleView = itemView.findViewById<RecyclerView>(R.id.setsRecyclerView)
+
         val setText = itemView.findViewById<TextView>(R.id.setNumberText)
         val repText = itemView.findViewById<EditText>(R.id.repNumberText)
         val weightText = itemView.findViewById<EditText>(R.id.weightNumberText)
+        val removeButton = itemView.findViewById<ImageButton>(R.id.removeButton)
+
+        var repPosition = 0
 
         init {
-            //setsRecycleView.adapter = SetsRecycleAdapter(setsRecycleView.context, exercise)
-
+            removeButton.setOnClickListener{
+                removeSet(repPosition)
+            }
 
         }
 
+    }
+
+    fun removeSet(repPosition: Int){
+        exercise.removeSet(repPosition)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,6 +50,7 @@ class SetsRecycleAdapter(private val context: Context,
         holder.setText.text = (position + 1).toString()
         holder.repText.setText(exercise.reps!![position].toString())
         holder.weightText.setText(exercise.weight!![position].toString())
+        holder.repPosition = position
 
 
         holder.repText.setOnFocusChangeListener { v, hasFocus ->

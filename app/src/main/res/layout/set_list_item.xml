@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dp">
+        android:paddingBottom="2dp"
+        android:onClick="hideKeyboard">
 
         <TextView
             android:id="@+id/setNumberText"
@@ -51,18 +52,31 @@
             android:layout_marginStart="220dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
-            android:text="20.5"
-            android:inputType="numberDecimal"
-            android:elevation="10dp"
-            android:selectAllOnFocus="true"
-            android:paddingVertical="4dp"
-            android:paddingHorizontal="10dp"
             android:background="#455A64"
+            android:elevation="10dp"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:selectAllOnFocus="true"
+            android:text="20.5"
             android:textAlignment="center"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/setNumberText"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.461" />
+
+        <ImageButton
+            android:id="@+id/removeButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="6dp"
+            android:backgroundTint="#D52B2B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
