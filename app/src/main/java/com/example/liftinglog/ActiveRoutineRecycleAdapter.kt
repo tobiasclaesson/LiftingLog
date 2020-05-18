@@ -49,7 +49,7 @@ class ActiveRoutineRecycleAdapter(private val context: Context, private val exer
 
 
         holder.setsRecyclerView.layoutManager = LinearLayoutManager(holder.setsRecyclerView.context)
-        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, exercises!![holder.exercisePosition])
+        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, holder.setsRecyclerView, exercises!![holder.exercisePosition])
 
 
 

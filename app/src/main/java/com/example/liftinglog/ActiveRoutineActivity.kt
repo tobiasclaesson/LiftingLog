@@ -44,6 +44,8 @@ class ActiveRoutineActivity : AppCompatActivity() {
         routine = DataManager.routines[routinePosition]
         exerciseList = routine.exercises
 
+        this.title = routine.name.toString()
+
         val finishButton = findViewById<Button>(R.id.finishRoutineButton)
         val activeRoutineRecyclerView = findViewById<RecyclerView>(R.id.activeRoutineRecyclerView)
         val activeRoutineAdapter = ActiveRoutineRecycleAdapter(this, exerciseList)

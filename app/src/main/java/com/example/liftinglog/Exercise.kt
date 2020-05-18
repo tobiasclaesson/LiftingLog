@@ -13,9 +13,11 @@ class Exercise(var name: String? = null,
     }
 
     fun removeSet(position: Int){
-        this.reps!!.removeAt(position)
-        this.weight!!.removeAt(position)
-        this.set--
+        if (this.reps!!.size > 1 && this.weight!!.size > 1) {
+            this.reps!!.removeAt(position)
+            this.weight!!.removeAt(position)
+            this.set--
+        }
     }
 
     fun updateReps(set: Int, value: Int){

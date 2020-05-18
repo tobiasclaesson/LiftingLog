@@ -10,6 +10,7 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class SetsRecycleAdapter(private val context: Context,
+                         val setsRecycleView: RecyclerView,
                          val exercise: Exercise) : RecyclerView.Adapter<SetsRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -21,11 +22,13 @@ class SetsRecycleAdapter(private val context: Context,
         val weightText = itemView.findViewById<EditText>(R.id.weightNumberText)
         val removeButton = itemView.findViewById<ImageButton>(R.id.removeButton)
 
+
         var repPosition = 0
 
         init {
             removeButton.setOnClickListener{
                 removeSet(repPosition)
+                setsRecycleView.adapter!!.notifyDataSetChanged()
             }
 
         }

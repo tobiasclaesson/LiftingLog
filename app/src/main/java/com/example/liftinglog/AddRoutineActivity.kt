@@ -37,6 +37,7 @@ class AddRoutineActivity : AppCompatActivity() {
         loginUser()
 
         //detector = GestureDetectorCompat(this, MyGestureListener())
+        this.title = "New Routine"
 
         val addExerciseButton = findViewById<Button>(R.id.addExerciseButton)
         val saveRoutineButton = findViewById<Button>(R.id.saveRoutineButton)

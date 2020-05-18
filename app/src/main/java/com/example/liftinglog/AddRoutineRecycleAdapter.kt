@@ -44,7 +44,7 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
         holder.exerciseHeader.text = exercise.name.toString()
 
         holder.setsRecyclerView.layoutManager = LinearLayoutManager(holder.setsRecyclerView.context)
-        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, exercises!![holder.exercisePosition])
+        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, holder.setsRecyclerView, exercises!![holder.exercisePosition])
 
         holder.addSetButton.setOnClickListener{ view ->
             println("!!! b4 addset sets: ${exercises!![position].set}")
