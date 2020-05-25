@@ -1,6 +1,7 @@
 package com.example.liftinglog
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.GestureDetector
@@ -59,8 +60,12 @@ class AddRoutineActivity : AppCompatActivity() {
             }
         }
         addExerciseButton.setOnClickListener{ view ->
-            exerciseList.add(Exercise("Dubbelhakspress", "hej", 1,  mutableListOf(0), mutableListOf(0.0)))
-            addRoutineRecyclerView.adapter?.notifyDataSetChanged()
+
+            val intent = Intent(this, AddExerciseActivity::class.java)
+            startActivity(intent)
+
+            //exerciseList.add(Exercise("Dubbelhakspress", "hej", 1,  mutableListOf(0), mutableListOf(0.0)))
+            //addRoutineRecyclerView.adapter?.notifyDataSetChanged()
         }
         saveRoutineButton.setOnClickListener{ view ->
             saveRoutine()

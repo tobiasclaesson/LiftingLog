@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActiveRoutineActivity"></activity>
-        <activity android:name=".set_list_item"></activity>
+        <activity android:name=".AddExerciseActivity"></activity>
+        <activity android:name=".ActiveRoutineActivity" />
+        <activity android:name=".set_list_item" />
         <activity android:name=".AddRoutineActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
