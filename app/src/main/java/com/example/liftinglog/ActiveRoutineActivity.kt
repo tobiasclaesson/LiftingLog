@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_routine.*
 
 const val POSITION_NOT_SET = -1
-const val ROUTINE_POSITION_KEY = "STUDENT_POSITION"
+const val ROUTINE_POSITION_KEY = "ROUTINE_POSITION"
 
 class ActiveRoutineActivity : AppCompatActivity() {
 

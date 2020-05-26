@@ -25,6 +25,7 @@ class AddRoutineActivity : AppCompatActivity() {
 
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
+    lateinit var addRoutineRecyclerView: RecyclerView
     //private lateinit var detector: GestureDetectorCompat
 
     var exerciseList = mutableListOf<Exercise>(Exercise("Bench press", "notinging", 1,  mutableListOf(0), mutableListOf(0.0)))
@@ -43,9 +44,9 @@ class AddRoutineActivity : AppCompatActivity() {
         val addExerciseButton = findViewById<Button>(R.id.addExerciseButton)
         val saveRoutineButton = findViewById<Button>(R.id.saveRoutineButton)
         val routineNameText = findViewById<EditText>(R.id.routineNameText)
-        val addRoutineRecyclerView = findViewById<RecyclerView>(R.id.addRoutineRecyclerView)
+        addRoutineRecyclerView = findViewById<RecyclerView>(R.id.addRoutineRecyclerView)
         val addRoutineAdapter = AddRoutineRecycleAdapter(this, exerciseList)
-        val setsRecyclerView = findViewById<RecyclerView>(R.id.addRoutineSetsRecyclerView)
+        //val setsRecyclerView = findViewById<RecyclerView>(R.id.addRoutineSetsRecyclerView)
 
 
         addRoutineRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -72,6 +73,16 @@ class AddRoutineActivity : AppCompatActivity() {
 
         }
 
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (DataManager.newExercise.name != null){
+            exerciseList.add(DataManager.newExercise)
+            addRoutineRecyclerView.adapter!!.notifyDataSetChanged()
+        }
 
     }
 /*

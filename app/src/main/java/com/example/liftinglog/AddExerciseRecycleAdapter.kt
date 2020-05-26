@@ -1,19 +1,16 @@
 package com.example.liftinglog
 
+import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 
 
-class AddExerciseRecycleAdapter(val context: Context, val exercises: MutableList<Exercise>) : RecyclerView.Adapter<AddExerciseRecycleAdapter.ViewHolder>() {
+class AddExerciseRecycleAdapter(val context: Context, val exercises: MutableList<Exercise>, val addExerciseActivity: AddExerciseActivity) : RecyclerView.Adapter<AddExerciseRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -22,10 +19,19 @@ class AddExerciseRecycleAdapter(val context: Context, val exercises: MutableList
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val exerciseNameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val exerciseRecyclerView = itemView.findViewById<RecyclerView>(R.id.exercisesRecyclerView)
+        val exerciseView = itemView.findViewById<ConstraintLayout>(R.id.exerciseView)
+
+        var exercisePosition = 0
 
         init {
 
+            exerciseView.setOnClickListener{view ->
+                val exercise = exercises[exercisePosition]
 
+                DataManager.newExercise = exercise
+                (context as Activity).finish()
+                println("!!! ${DataManager.newExercise.name}")
+            }
         }
     }
 
@@ -41,6 +47,8 @@ class AddExerciseRecycleAdapter(val context: Context, val exercises: MutableList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.exerciseNameTextView.text = exercises[position].name
+
+        holder.exercisePosition = position
     }
 
 

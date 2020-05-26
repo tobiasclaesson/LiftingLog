@@ -30,10 +30,14 @@ class AddExerciseActivity : AppCompatActivity() {
 
         val exercisesRecycleView = findViewById<RecyclerView>(R.id.exercisesRecyclerView)
         exercisesRecycleView.layoutManager = LinearLayoutManager(this)
-        exercisesRecycleView.adapter = AddExerciseRecycleAdapter(this, exercises)
+        exercisesRecycleView.adapter = AddExerciseRecycleAdapter(this, exercises, AddExerciseActivity())
+
+
 
 
     }
+
+
 
     fun loginUser(){
         if (auth.currentUser == null){
