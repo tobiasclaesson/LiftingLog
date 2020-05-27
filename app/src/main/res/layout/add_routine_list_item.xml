@@ -30,8 +30,6 @@
                 android:letterSpacing="0"
                 android:text="TextView"
                 android:textColor="#ffffff"
-
-
                 android:textSize="48px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:background="@null"
-                android:text="note"
+                android:text=""
+                android:hint="write note"
                 android:textColor="#ffffff"
                 android:textSize="48px"
                 app:layout_constraintStart_toStartOf="parent"

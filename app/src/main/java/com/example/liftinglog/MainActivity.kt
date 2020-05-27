@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -19,6 +20,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when(item.itemId){
+            R.id.routinesBottomNav -> {
+                println("!!! routines pressed")
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.historyBottomNav -> {
+                println("!!! history pressed")
+                return@OnNavigationItemSelectedListener true
+            }
+
+        }
+        false
+
+    }
 
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
@@ -30,13 +46,15 @@ class MainActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
-
         loginUser()
-
         loadRoutines()
 
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         val routinesRecyclerView = findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = findViewById<FloatingActionButton>(R.id.addRoutineFab)
+
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         routinesRecyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = RoutineRecycleAdapter(this, DataManager.routines)

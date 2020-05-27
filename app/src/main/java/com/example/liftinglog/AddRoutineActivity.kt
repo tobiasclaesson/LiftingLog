@@ -28,7 +28,7 @@ class AddRoutineActivity : AppCompatActivity() {
     lateinit var addRoutineRecyclerView: RecyclerView
     //private lateinit var detector: GestureDetectorCompat
 
-    var exerciseList = mutableListOf<Exercise>(Exercise("Bench press", "notinging", 1,  mutableListOf(0), mutableListOf(0.0)))
+    var exerciseList = mutableListOf<Exercise>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,10 +79,10 @@ class AddRoutineActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (DataManager.newExercise.name != null){
+        val name = DataManager.newExercise.name ?: return
             exerciseList.add(DataManager.newExercise)
             addRoutineRecyclerView.adapter!!.notifyDataSetChanged()
-        }
+
 
     }
 /*
