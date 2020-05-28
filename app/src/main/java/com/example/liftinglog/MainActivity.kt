@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,17 +19,20 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_routines.*
 
 class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when(item.itemId){
             R.id.routinesBottomNav -> {
-                println("!!! routines pressed")
+                replaceFragment(RoutinesFragment())
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.historyBottomNav -> {
-                println("!!! history pressed")
+                replaceFragment(HistoryFragment())
+
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -44,9 +49,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        db = FirebaseFirestore.getInstance()
+        //replaceFragment(RoutinesFragment())
         auth = FirebaseAuth.getInstance()
         loginUser()
+        db = FirebaseFirestore.getInstance()
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        /*
         loadRoutines()
 
 
@@ -54,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val routinesRecyclerView = findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = findViewById<FloatingActionButton>(R.id.addRoutineFab)
 
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
 
         routinesRecyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = RoutineRecycleAdapter(this, DataManager.routines)
@@ -64,10 +73,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddRoutineActivity::class.java)
             startActivity(intent)
         }
-
-
-
+        */
     }
+
+
 
 
 
@@ -124,6 +133,12 @@ class MainActivity : AppCompatActivity() {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         }
 
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment)
+        fragmentTransaction.commit()
     }
 
 
