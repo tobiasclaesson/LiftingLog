@@ -10,19 +10,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ActiveRoutineRecycleAdapter(private val context: Context, private val exercises: List<Exercise>?) : RecyclerView.Adapter<ActiveRoutineRecycleAdapter.ViewHolder>() {
+class ActiveRoutineRecycleAdapter(private val context: Context, private val routine: Routine) : RecyclerView.Adapter<ActiveRoutineRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
+    //val exercises = routine.exercises
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val exerciseHeader = itemView.findViewById<TextView>(R.id.activeRoutineNameText)
         val setsRecyclerView = itemView.findViewById<RecyclerView>(R.id.activeRoutineSetsRecyclerView)
         val addSetButton = itemView.findViewById<Button>(R.id.activeRoutineAddSetButton)
-        //val removeButton = itemView.findViewById<ImageButton>(R.id.removeButton)
+        val removeRoutineButton = itemView.findViewById<ImageButton>(R.id.removeRoutineButton)
         var exercisePosition = 0
 
         init {
+            removeRoutineButton.setOnClickListener{
 
+            }
 
         }
 
@@ -37,24 +40,24 @@ class ActiveRoutineRecycleAdapter(private val context: Context, private val exer
 
     override fun getItemCount(): Int {
 
-        return exercises!!.size
+        return routine.exercises!!.size
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val exercise = exercises!![position]
+        val exercise = routine.exercises!![position]
         holder.exercisePosition = position
 
         holder.exerciseHeader.text = exercise.name.toString()
 
 
         holder.setsRecyclerView.layoutManager = LinearLayoutManager(holder.setsRecyclerView.context)
-        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, holder.setsRecyclerView, exercises!![holder.exercisePosition])
+        holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, holder.setsRecyclerView, routine.exercises!![holder.exercisePosition])
 
 
 
         holder.addSetButton.setOnClickListener{ view ->
-            exercises!![holder.exercisePosition].addSet()
+            routine.exercises!![holder.exercisePosition].addSet()
             holder.setsRecyclerView.adapter?.notifyDataSetChanged()
         }
     }

@@ -4,6 +4,8 @@ import java.util.*
 
 
 class Routine(var name: String? = null,
-              var date: Date? = null,
-              var exercises: MutableList<Exercise>? = null) {
+              var finishedDate: Date? = null,
+              var exercises: MutableList<Exercise>? = null,
+              var docId: String? = null
+              ) {
 }

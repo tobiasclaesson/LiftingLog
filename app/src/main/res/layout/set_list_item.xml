@@ -73,7 +73,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="6dp"
-            android:backgroundTint="#D52B2B"
+            android:backgroundTint="#00D52B2B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

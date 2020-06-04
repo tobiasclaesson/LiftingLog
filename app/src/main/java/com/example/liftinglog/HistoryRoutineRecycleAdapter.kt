@@ -51,12 +51,13 @@ class HistoryRoutineRecycleAdapter(val context: Context, val historyRoutines: Mu
     }
 
     override fun getItemCount(): Int {
-        return historyRoutines.size
+        return DataManager.historyRoutines.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = historyRoutines[position].name
-        holder.timeSince.text = compareDates(historyRoutines[position].date!!)
+        holder.name.text = DataManager.historyRoutines[position].name
+        holder.timeSince.text = compareDates(DataManager.historyRoutines[position].finishedDate!!)
         holder.routinePosition = position
+
     }
 }

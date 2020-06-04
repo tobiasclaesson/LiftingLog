@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HistoryRoutineSummaryActivity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme" />
+
+
         <activity android:name=".AddExerciseActivity" />
         <activity android:name=".ActiveRoutineActivity" />
         <activity android:name=".AddRoutineActivity" />

@@ -87,7 +87,7 @@ class AddRoutineActivity : AppCompatActivity() {
     }
 
     fun saveRoutine(){
-        val routine = Routine(routineNameText.text.toString(), null, exerciseList)
+        val routine = Routine(routineNameText.text.toString(), null, exerciseList, "")
 
         println("!!! b4 nullcheck")
         val user = auth.currentUser ?: return

@@ -44,30 +44,41 @@ class ActiveRoutineActivity : AppCompatActivity() {
 
         routine = DataManager.routines[routinePosition]
         exerciseList = routine.exercises
-
+        println("!!! routine document id: ${routine.docId}")
         this.title = routine.name.toString()
 
         val finishButton = findViewById<Button>(R.id.finishRoutineButton)
         val activeRoutineRecyclerView = findViewById<RecyclerView>(R.id.activeRoutineRecyclerView)
-        val activeRoutineAdapter = ActiveRoutineRecycleAdapter(this, exerciseList)
+        val activeRoutineAdapter = ActiveRoutineRecycleAdapter(this, routine)
         activeRoutineRecyclerView.layoutManager = LinearLayoutManager(this)
         activeRoutineRecyclerView.adapter = activeRoutineAdapter
 
         finishButton.setOnClickListener{view ->
+            updateCurrentRoutine()
             saveFinishedRoutine()
         }
 
     }
 
-    fun saveFinishedRoutine(){
-
-        println("!!! b4 nullcheck")
+    fun updateCurrentRoutine(){
         val user = auth.currentUser ?: return
-        println("!!! after nullcheck")
 
 
-        routine.date = Date()
 
+        db.collection("users").document(user.uid).collection("routines").document(routine.docId!!).set(routine)
+            .addOnSuccessListener {documentReference ->
+                //println("!!! DocumentSnapshot added with ID: ${documentReference.id}")
+                finish()
+            }
+            .addOnFailureListener{
+                println("!!! error adding document: $it")
+            }
+    }
+
+    fun saveFinishedRoutine(){
+        val user = auth.currentUser ?: return
+
+        routine.finishedDate = Date()
 
         db.collection("users").document(user.uid).collection("finishedRoutines").add(routine)
             .addOnSuccessListener {documentReference ->

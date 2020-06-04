@@ -81,7 +81,9 @@ class RoutinesFragment : Fragment() {
                 for (document in snapshot.documents){
                     val newRoutine = document.toObject(Routine::class.java)
                     if (newRoutine != null){
+                        newRoutine.docId = document.id
                         DataManager.routines.add(newRoutine)
+
                         routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
                     }
                 }

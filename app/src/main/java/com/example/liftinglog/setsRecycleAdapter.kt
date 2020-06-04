@@ -25,6 +25,7 @@ class SetsRecycleAdapter(private val context: Context,
 
 
 
+
         var repPosition = 0
 
         init {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -61,9 +62,9 @@ class HistoryFragment : Fragment() {
 
     }
 
-    fun loadRoutines(historyRoutinesRecyclerView: RecyclerView){
+    fun loadRoutines(routinesRecyclerView: RecyclerView){
         val user = auth.currentUser ?: return
-        val routinesRef = db.collection("users").document(user.uid).collection("finishedRoutines").orderBy("date")
+        val routinesRef = db.collection("users").document(user.uid).collection("finishedRoutines").orderBy("finishedDate", Query.Direction.DESCENDING)
 
         routinesRef.addSnapshotListener { snapshot , e ->
             if(snapshot != null){
@@ -71,8 +72,10 @@ class HistoryFragment : Fragment() {
                 for (document in snapshot.documents){
                     val newRoutine = document.toObject(Routine::class.java)
                     if (newRoutine != null){
+                        newRoutine.docId = document.id
                         DataManager.historyRoutines.add(newRoutine)
-                        historyRoutinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
+
+                        routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
                     }
                 }
             }
