@@ -36,7 +36,7 @@ class AddRoutineActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        loginUser()
+
 
         //detector = GestureDetectorCompat(this, MyGestureListener())
         this.title = "New Routine"
@@ -85,87 +85,9 @@ class AddRoutineActivity : AppCompatActivity() {
 
 
     }
-/*
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return if (detector.onTouchEvent(event)){
-            println("tru")
-            true
-        } else {
-            println("super")
-            super.onTouchEvent(event)
-        }
-    }
 
-    inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
-
-        private val SWIPE_THRESHOLD = 100
-        private val SWIPE_VELOCITY_THRESHHOLD = 100
-
-        override fun onFling(
-            downEvent: MotionEvent?,
-            moveEvent: MotionEvent?,
-            velocityX: Float,
-            velocityY: Float
-        ): Boolean {
-            var diffX = moveEvent?.x?.minus(downEvent!!.x) ?: 0.0F
-            var diffY = moveEvent?.y?.minus(downEvent!!.y) ?: 0.0F
-
-            return if(abs(diffX) > abs(diffY)) {
-                // horizontal swipe
-                return if (abs(diffX) > SWIPE_THRESHOLD && abs(velocityX) > SWIPE_VELOCITY_THRESHHOLD){
-                    if (diffX > 0){
-                        // right swipe
-                        this@AddRoutineActivity.onRightSwipe()
-                    } else {
-                        // left swipe
-                        println("!!! leftswipeeeee")
-                        this@AddRoutineActivity.onSwipeLeft()
-                    }
-                    true
-                } else {
-                    super.onFling(downEvent, moveEvent, velocityX, velocityY)
-                }
-
-            } else {
-                // vertical swipe
-                if (abs(diffY) > SWIPE_THRESHOLD && abs(velocityY) > SWIPE_VELOCITY_THRESHHOLD){
-                    if (diffY > 0){
-                        // up swipe
-                        this@AddRoutineActivity.onDownSwipe()
-                    } else {
-                        // down swipe
-                        this@AddRoutineActivity.onUpSwipe()
-                    }
-                    true
-                } else {
-                    super.onFling(downEvent, moveEvent, velocityX, velocityY)
-                }
-
-            }
-
-
-
-        }
-    }
-
-    private fun onDownSwipe() {
-        println("!!! downswipe")
-    }
-
-    private fun onUpSwipe() {
-        println("!!! upswipe")
-    }
-
-    private fun onRightSwipe() {
-        println("!!! rightswipe")
-    }
-
-    private fun onSwipeLeft() {
-        Toast.makeText(this, "left swipe", Toast.LENGTH_LONG).show()
-    }
-*/
     fun saveRoutine(){
-        val routine = Routine(routineNameText.text.toString(), exerciseList)
+        val routine = Routine(routineNameText.text.toString(), null, exerciseList)
 
         println("!!! b4 nullcheck")
         val user = auth.currentUser ?: return
@@ -181,20 +103,7 @@ class AddRoutineActivity : AppCompatActivity() {
             }
     }
 
-    fun loginUser(){
-        if (auth.currentUser == null){
-            auth.signInWithEmailAndPassword("test@test.com", "password")
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        println("!!! authloggedin")
-                    } else {
-                        println("!!! user not logged in")
-                    }
-                }
-        } else {
-            println("!!! user already logged in")
-        }
-    }
+
 
     fun hideKeyboard(view: View) {
         val view = this.currentFocus

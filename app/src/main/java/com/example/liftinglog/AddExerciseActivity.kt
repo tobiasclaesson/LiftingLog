@@ -24,7 +24,6 @@ class AddExerciseActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        loginUser()
 
         loadExercisesFromDB()
 
@@ -37,22 +36,6 @@ class AddExerciseActivity : AppCompatActivity() {
 
     }
 
-
-
-    fun loginUser(){
-        if (auth.currentUser == null){
-            auth.signInWithEmailAndPassword("test@test.com", "password")
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        println("!!! authloggedin")
-                    } else {
-                        println("!!! user not logged in")
-                    }
-                }
-        } else {
-            println("!!! user already logged in")
-        }
-    }
 
     fun loadExercisesFromDB(){
         val user = auth.currentUser ?: return

@@ -40,9 +40,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:background="@null"
-                android:text=""
                 android:hint="write note"
+                android:text=""
                 android:textColor="#ffffff"
+                android:textColorHint="#B3FFFFFF"
                 android:textSize="48px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addRoutineNameText" />
@@ -62,10 +63,11 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
+                android:layout_marginStart="125dp"
                 android:layout_marginTop="2dp"
                 android:text="Rep"
                 android:textColor="#ffffff"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noteEditText" />
 
@@ -73,7 +75,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="240dp"
                 android:layout_marginTop="2dp"
                 android:text="kg"
                 android:textColor="#ffffff"

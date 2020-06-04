@@ -2,16 +2,16 @@ package com.example.liftinglog
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.fragment_routines.*
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,26 +52,26 @@ class HistoryFragment : Fragment() {
         val historyRoutinesRecyclerView = view.findViewById<RecyclerView>(R.id.historyRoutinesRecyclerView)
 
         historyRoutinesRecyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RoutineRecycleAdapter(activity, DataManager.historyRoutines)
+        val adapter = HistoryRoutineRecycleAdapter(activity, DataManager.historyRoutines)
         historyRoutinesRecyclerView.adapter = adapter
 
-        loadRoutines()
+        loadRoutines(historyRoutinesRecyclerView)
 
         return view
 
     }
 
-    fun loadRoutines(){
+    fun loadRoutines(historyRoutinesRecyclerView: RecyclerView){
         val user = auth.currentUser ?: return
-        val routinesRef = db.collection("users").document(user.uid).collection("finishedRoutines")
+        val routinesRef = db.collection("users").document(user.uid).collection("finishedRoutines").orderBy("date")
 
         routinesRef.addSnapshotListener { snapshot , e ->
             if(snapshot != null){
-                DataManager.routines.clear()
+                DataManager.historyRoutines.clear()
                 for (document in snapshot.documents){
                     val newRoutine = document.toObject(Routine::class.java)
                     if (newRoutine != null){
-                        DataManager.historyRoutines.add(newRoutine!!)
+                        DataManager.historyRoutines.add(newRoutine)
                         historyRoutinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
                     }
                 }
@@ -79,6 +79,8 @@ class HistoryFragment : Fragment() {
         }
 
     }
+
+
 
     companion object {
         /**

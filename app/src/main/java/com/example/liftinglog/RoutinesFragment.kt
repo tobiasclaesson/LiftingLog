@@ -3,10 +3,8 @@ package com.example.liftinglog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -55,6 +53,7 @@ class RoutinesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_routines, container, false)
         val activity = activity as Context
 
+
         val routinesRecyclerView = view.findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = view.findViewById<FloatingActionButton>(R.id.addRoutineFab)
 
@@ -67,12 +66,12 @@ class RoutinesFragment : Fragment() {
             startActivity(intent)
         }
 
-        loadRoutines()
+        loadRoutines(routinesRecyclerView)
 
         return view
     }
 
-    fun loadRoutines(){
+    fun loadRoutines(routinesRecyclerView: RecyclerView){
         val user = auth.currentUser ?: return
         val routinesRef = db.collection("users").document(user.uid).collection("routines")
 
@@ -82,7 +81,7 @@ class RoutinesFragment : Fragment() {
                 for (document in snapshot.documents){
                     val newRoutine = document.toObject(Routine::class.java)
                     if (newRoutine != null){
-                        DataManager.routines.add(newRoutine!!)
+                        DataManager.routines.add(newRoutine)
                         routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
                     }
                 }

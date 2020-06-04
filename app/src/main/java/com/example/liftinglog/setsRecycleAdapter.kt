@@ -23,6 +23,8 @@ class SetsRecycleAdapter(private val context: Context,
         val removeButton = itemView.findViewById<ImageButton>(R.id.removeButton)
 
 
+
+
         var repPosition = 0
 
         init {
@@ -54,6 +56,7 @@ class SetsRecycleAdapter(private val context: Context,
         holder.repText.setText(exercise.reps!![position].toString())
         holder.weightText.setText(exercise.weight!![position].toString())
         holder.repPosition = position
+
 
 
         holder.repText.setOnFocusChangeListener { v, hasFocus ->

@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -27,12 +29,12 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.routinesBottomNav -> {
                 replaceFragment(RoutinesFragment())
-
+                this.title = "Routines"
                 return@OnNavigationItemSelectedListener true
             }
             R.id.historyBottomNav -> {
                 replaceFragment(HistoryFragment())
-
+                this.title = "History"
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -48,10 +50,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //replaceFragment(RoutinesFragment())
+        this.title = "Routines"
+        replaceFragment(RoutinesFragment())
         auth = FirebaseAuth.getInstance()
-        loginUser()
+
         db = FirebaseFirestore.getInstance()
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
@@ -105,22 +107,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun loginUser(){
-        if (auth.currentUser == null){
-            auth.signInWithEmailAndPassword("test@test.com", "password")
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        println("!!! authloggedin")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
 
-
-
-                    } else {
-                        println("!!! user not logged in")
-                    }
-                }
-        } else {
-            println("!!! user already logged in")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.logOutItem -> {
+                auth.signOut()
+                finish()
+                return true
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     fun hideKeyboard(view: View){
