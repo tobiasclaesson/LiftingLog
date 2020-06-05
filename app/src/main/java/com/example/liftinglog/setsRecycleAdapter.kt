@@ -1,6 +1,8 @@
 package com.example.liftinglog
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.EditText
@@ -59,43 +61,35 @@ class SetsRecycleAdapter(private val context: Context,
         holder.repPosition = position
 
 
-
-        holder.repText.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus){
-                Log.d("!!!", "focuuus")
-
-
-            }
-            else{
+        holder.repText.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
                 val data = holder.repText.text
 
                 exercise.updateReps(position, data.toString().toInt())
-                exercise.reps!!.forEach {
-                    Log.d("!!!", "Rep: $it")
-                }
-                //setsRecycleView.adapter?.notifyDataSetChanged()
-                Log.d("!!!", "Focus gone")
             }
 
-        }
-
-        holder.weightText.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus){
-                Log.d("!!!", "focuuus")
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-            else{
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+
+        holder.weightText.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
                 val data = holder.weightText.text
 
                 exercise.updateWeight(position, data.toString().toDouble())
-
-                exercise.weight!!.forEach {
-                    Log.d("!!!", "Weight: $it")
-                }
-                //setsRecycleView.adapter?.notifyDataSetChanged()
-
-                Log.d("!!!", "Focus gone")
             }
 
-        }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+
     }
 }

@@ -61,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
 
         if (auth.currentUser != null)
             return
-        println("!!! current user is not null")
         auth.signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

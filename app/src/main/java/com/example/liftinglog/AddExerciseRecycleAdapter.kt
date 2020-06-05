@@ -30,7 +30,6 @@ class AddExerciseRecycleAdapter(val context: Context, val exercises: MutableList
 
                 DataManager.newExercise = exercise
                 (context as Activity).finish()
-                println("!!! ${DataManager.newExercise.name}")
             }
         }
     }

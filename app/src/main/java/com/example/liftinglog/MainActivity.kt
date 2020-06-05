@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_routines.*
 
 class MainActivity : AppCompatActivity() {
 
+    //Handle bottom nav bar
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when(item.itemId){
             R.id.routinesBottomNav -> {
@@ -56,54 +57,6 @@ class MainActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-        /*
-        loadRoutines()
-
-
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        val routinesRecyclerView = findViewById<RecyclerView>(R.id.routinesRecyclerView)
-        val addRoutineFab = findViewById<FloatingActionButton>(R.id.addRoutineFab)
-
-
-
-        routinesRecyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = RoutineRecycleAdapter(this, DataManager.routines)
-        routinesRecyclerView.adapter = adapter
-
-        addRoutineFab.setOnClickListener {view ->
-            val intent = Intent(this, AddRoutineActivity::class.java)
-            startActivity(intent)
-        }
-        */
-    }
-
-
-
-
-
-    override fun onResume() {
-        super.onResume()
-
-
-    }
-
-    fun loadRoutines(){
-        val user = auth.currentUser ?: return
-        val routinesRef = db.collection("users").document(user.uid).collection("routines")
-
-        routinesRef.addSnapshotListener { snapshot , e ->
-            if(snapshot != null){
-                DataManager.routines.clear()
-                for (document in snapshot.documents){
-                    val newRoutine = document.toObject(Routine::class.java)
-                    if (newRoutine != null){
-                        DataManager.routines.add(newRoutine!!)
-                        routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
-                    }
-                }
-            }
-        }
 
     }
 

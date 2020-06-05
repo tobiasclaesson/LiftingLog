@@ -37,8 +37,6 @@ class RoutinesFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
 
-
-            //loginUser()
         }
     }
 
@@ -78,6 +76,7 @@ class RoutinesFragment : Fragment() {
         val routinesRef = db.collection("users").document(user.uid).collection("routines")
 
         routinesRef.addSnapshotListener { snapshot , e ->
+
             if(snapshot != null){
                 DataManager.routines.clear()
                 for (document in snapshot.documents){
@@ -88,29 +87,14 @@ class RoutinesFragment : Fragment() {
                         newRoutine.docId = document.id
                         DataManager.routines.add(newRoutine)
 
-                        routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
                     }
+
                 }
+                routinesRecyclerView.adapter?.notifyDataSetChanged()
             }
         }
     }
 
-    /*
-    fun loginUser(){
-        if (auth.currentUser == null){
-            auth.signInWithEmailAndPassword("test@test.com", "password")
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        println("!!! authloggedin")
-                    } else {
-                        println("!!! user not logged in")
-                    }
-                }
-        } else {
-            println("!!! user already logged in")
-        }
-    }
-    */
     companion object {
         /**
          * Use this factory method to create a new instance of

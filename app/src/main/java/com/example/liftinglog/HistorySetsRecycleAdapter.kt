@@ -20,12 +20,6 @@ class HistorySetsRecycleAdapter(private val context: Context,
         val repText = itemView.findViewById<TextView>(R.id.historyRepNumberText)
         val weightText = itemView.findViewById<TextView>(R.id.historyWeightNumberText)
 
-
-        init {
-
-
-        }
-
     }
 
 
@@ -43,7 +37,6 @@ class HistorySetsRecycleAdapter(private val context: Context,
         holder.setText.text = (position + 1).toString()
         holder.repText.text = exercise.reps!![position].toString()
         holder.weightText.text = exercise.weight!![position].toString()
-
 
     }
 }

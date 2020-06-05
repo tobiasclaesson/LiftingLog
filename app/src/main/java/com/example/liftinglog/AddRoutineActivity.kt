@@ -27,7 +27,6 @@ class AddRoutineActivity : AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
     lateinit var addRoutineRecyclerView: RecyclerView
-    //private lateinit var detector: GestureDetectorCompat
 
     var exerciseList = mutableListOf<Exercise>()
 
@@ -38,18 +37,14 @@ class AddRoutineActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-
-        //detector = GestureDetectorCompat(this, MyGestureListener())
         this.title = "New Routine"
 
         val addExerciseButton = findViewById<Button>(R.id.addExerciseButton)
         val saveRoutineButton = findViewById<Button>(R.id.saveRoutineButton)
         val routineNameText = findViewById<EditText>(R.id.routineNameText)
         addRoutineRecyclerView = findViewById<RecyclerView>(R.id.addRoutineRecyclerView)
-        exerciseList.clear()
+        DataManager.newExercise.name = null
         val addRoutineAdapter = AddRoutineRecycleAdapter(this, exerciseList)
-        //val setsRecyclerView = findViewById<RecyclerView>(R.id.addRoutineSetsRecyclerView)
-
 
         addRoutineRecyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -67,8 +62,6 @@ class AddRoutineActivity : AppCompatActivity() {
             val intent = Intent(this, AddExerciseActivity::class.java)
             startActivity(intent)
 
-            //exerciseList.add(Exercise("Dubbelhakspress", "hej", 1,  mutableListOf(0), mutableListOf(0.0)))
-            //addRoutineRecyclerView.adapter?.notifyDataSetChanged()
         }
         saveRoutineButton.setOnClickListener{ view ->
             saveRoutine()

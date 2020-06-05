@@ -52,13 +52,13 @@ class RoutineRecycleAdapter(private val context: Context, private val routines: 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val itemView = layoutInflater.inflate(R.layout.routines_list_item, parent, false)
 
         return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        println("!!! ${routines.size}")
         return routines.size
     }
 

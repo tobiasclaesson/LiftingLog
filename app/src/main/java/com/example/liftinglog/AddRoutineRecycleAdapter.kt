@@ -20,11 +20,6 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
         val addSetButton = itemView.findViewById<Button>(R.id.addSetButton)
         var exercisePosition = 0
 
-        init {
-
-
-        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,9 +42,7 @@ class AddRoutineRecycleAdapter(private val context: Context, private val exercis
         holder.setsRecyclerView.adapter = SetsRecycleAdapter(holder.setsRecyclerView.context, holder.setsRecyclerView, exercises!![holder.exercisePosition])
 
         holder.addSetButton.setOnClickListener{ view ->
-            println("!!! b4 addset sets: ${exercises!![position].set}")
             exercises!![position].addSet()
-            println("!!! after addset sets: ${exercises!![position].set}")
             holder.setsRecyclerView.adapter?.notifyDataSetChanged()
         }
 

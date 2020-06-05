@@ -77,7 +77,7 @@ class HistoryFragment : Fragment() {
                         newRoutine.docId = document.id
                         DataManager.historyRoutines.add(newRoutine)
 
-                        routinesRecyclerView.adapter?.notifyDataSetChanged() // rätt?
+                        routinesRecyclerView.adapter?.notifyDataSetChanged()
                     }
                 }
             }

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 class ActiveRoutineRecycleAdapter(private val context: Context, private val routine: Routine) : RecyclerView.Adapter<ActiveRoutineRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
-    //val exercises = routine.exercises
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val exerciseHeader = itemView.findViewById<TextView>(R.id.activeRoutineNameText)
