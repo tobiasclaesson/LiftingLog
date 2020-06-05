@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -45,6 +46,7 @@ class AddRoutineActivity : AppCompatActivity() {
         val saveRoutineButton = findViewById<Button>(R.id.saveRoutineButton)
         val routineNameText = findViewById<EditText>(R.id.routineNameText)
         addRoutineRecyclerView = findViewById<RecyclerView>(R.id.addRoutineRecyclerView)
+        exerciseList.clear()
         val addRoutineAdapter = AddRoutineRecycleAdapter(this, exerciseList)
         //val setsRecyclerView = findViewById<RecyclerView>(R.id.addRoutineSetsRecyclerView)
 
@@ -73,12 +75,11 @@ class AddRoutineActivity : AppCompatActivity() {
 
         }
 
-
-
     }
 
     override fun onResume() {
         super.onResume()
+
         val name = DataManager.newExercise.name ?: return
             exerciseList.add(DataManager.newExercise)
             addRoutineRecyclerView.adapter!!.notifyDataSetChanged()

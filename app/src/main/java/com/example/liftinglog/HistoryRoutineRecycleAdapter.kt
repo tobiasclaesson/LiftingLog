@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 const val HISTORY_ROUTINE_POSITION_KEY = "HISTORY_ROUTINE_POSITION"
 
-class HistoryRoutineRecycleAdapter(val context: Context, val historyRoutines: MutableList<Routine>) : RecyclerView.Adapter<HistoryRoutineRecycleAdapter.ViewHolder>() {
+class HistoryRoutineRecycleAdapter(val context: Context, val historyRoutines: MutableList<Routine>, val noHistoryRoutinesText: TextView) : RecyclerView.Adapter<HistoryRoutineRecycleAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -58,6 +58,8 @@ class HistoryRoutineRecycleAdapter(val context: Context, val historyRoutines: Mu
         holder.name.text = DataManager.historyRoutines[position].name
         holder.timeSince.text = compareDates(DataManager.historyRoutines[position].finishedDate!!)
         holder.routinePosition = position
+
+        noHistoryRoutinesText.visibility = View.INVISIBLE
 
     }
 }

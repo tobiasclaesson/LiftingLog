@@ -116,6 +116,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.logOutItem -> {
+                DataManager.historyRoutines.clear()
+                DataManager.routines.clear()
                 auth.signOut()
                 finish()
                 return true

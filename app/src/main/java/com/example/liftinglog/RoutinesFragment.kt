@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,9 +57,10 @@ class RoutinesFragment : Fragment() {
 
         val routinesRecyclerView = view.findViewById<RecyclerView>(R.id.routinesRecyclerView)
         val addRoutineFab = view.findViewById<FloatingActionButton>(R.id.addRoutineFab)
+        val noRoutinesText = view.findViewById<TextView>(R.id.noRoutinesText)
 
         routinesRecyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RoutineRecycleAdapter(activity, DataManager.routines)
+        val adapter = RoutineRecycleAdapter(activity, DataManager.routines, noRoutinesText, auth, db)
         routinesRecyclerView.adapter = adapter
 
         addRoutineFab.setOnClickListener {view ->
@@ -79,6 +81,8 @@ class RoutinesFragment : Fragment() {
             if(snapshot != null){
                 DataManager.routines.clear()
                 for (document in snapshot.documents){
+                    if(snapshot.documents.size > 0){
+                    }
                     val newRoutine = document.toObject(Routine::class.java)
                     if (newRoutine != null){
                         newRoutine.docId = document.id
@@ -89,7 +93,6 @@ class RoutinesFragment : Fragment() {
                 }
             }
         }
-
     }
 
     /*

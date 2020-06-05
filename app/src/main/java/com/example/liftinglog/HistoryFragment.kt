@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,9 +52,10 @@ class HistoryFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         val historyRoutinesRecyclerView = view.findViewById<RecyclerView>(R.id.historyRoutinesRecyclerView)
+        val noHistoryRoutinesText = view.findViewById<TextView>(R.id.noHistoryRoutinesText)
 
         historyRoutinesRecyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = HistoryRoutineRecycleAdapter(activity, DataManager.historyRoutines)
+        val adapter = HistoryRoutineRecycleAdapter(activity, DataManager.historyRoutines, noHistoryRoutinesText)
         historyRoutinesRecyclerView.adapter = adapter
 
         loadRoutines(historyRoutinesRecyclerView)

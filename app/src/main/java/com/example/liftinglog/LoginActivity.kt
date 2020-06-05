@@ -46,6 +46,11 @@ class LoginActivity : AppCompatActivity() {
         logInButton.setOnClickListener{
             loginUser()
         }
+        val createUserButton = findViewById<Button>(R.id.createUserButton)
+        createUserButton.setOnClickListener{
+            createUser()
+        }
+
     }
 
     fun loginUser(){
@@ -67,6 +72,24 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    fun createUser() {
+        if (emailEditText.text.toString().isEmpty() || passwordEditText.text.toString().isEmpty()){
+            Snackbar.make(emailEditText, "Fill in your Email and Password!", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
+
+        auth.createUserWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    goToMainActivity()
+                } else {
+                    Snackbar.make(emailEditText, "User not created", Snackbar.LENGTH_SHORT).show()
+                    println("!!! user not created ${emailEditText.text} ${passwordEditText.text} ${task.exception}")
+                }
+            }
     }
 
     fun goToMainActivity() {

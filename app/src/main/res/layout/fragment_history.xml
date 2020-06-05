@@ -18,5 +18,21 @@
         tools:listitem="@layout/history_routine_list_item" />
 
 
+    <TextView
+        android:id="@+id/noHistoryRoutinesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="Roboto"
+        android:letterSpacing="0"
+        android:text="You have not finished a routine yet!"
+
+
+        android:textColor="#ffffff"
+        android:textSize="56px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
