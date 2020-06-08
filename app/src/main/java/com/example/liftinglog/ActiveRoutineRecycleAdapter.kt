@@ -21,12 +21,6 @@ class ActiveRoutineRecycleAdapter(private val context: Context, private val rout
         val removeRoutineButton = itemView.findViewById<ImageButton>(R.id.removeRoutineButton)
         var exercisePosition = 0
 
-        init {
-            removeRoutineButton.setOnClickListener{
-
-            }
-
-        }
 
 
     }
