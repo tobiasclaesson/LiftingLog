@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "131619771949",
+    "firebase_url": "https://liftinglog-51c4c.firebaseio.com",
+    "project_id": "liftinglog-51c4c",
+    "storage_bucket": "liftinglog-51c4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131619771949:android:2e9da909b5758c6511caa4",
+        "android_client_info": {
+          "package_name": "com.example.liftinglog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131619771949-7vp30p1ketuoq2q24av6j8fpj8sdk71h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.liftinglog",
+            "certificate_hash": "2da13e3f77f4862f097f3ce7aff4d8e30d06602d"
+          }
+        },
+        {
+          "client_id": "131619771949-1m6lu18qe6ivietlqgp57j9aonq7l8qf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9zuC4vPe2SFU0TJN1tEIZL27vOsEJJRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131619771949-1m6lu18qe6ivietlqgp57j9aonq7l8qf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

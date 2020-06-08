@@ -22,7 +22,6 @@ class ActiveRoutineRecycleAdapter(private val context: Context, private val rout
         var exercisePosition = 0
 
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
